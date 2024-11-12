@@ -15,5 +15,8 @@
   "devDependencies": {
     "terser": "^5.36.0",
     "vite": "^5.4.10"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
   }
 }
