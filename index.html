@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tabler icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.21.0/tabler-icons.min.css" integrity="sha512-XrgoTBs7P5YtpkeKqKOKkruURsawIaRrhe8QrcWeMnFeyRZiOcRNjBAX+AQeXOvx9/9fSY32dVct1PccRoCICQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Icon picker -->
+    <link rel="stylesheet" href="/dist/ez-icon-picker.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Icon picker -->
+    <div class="icon-picker" data-name="icon"></div>
+    
+    <script src="/dist/ez-icon-picker.min.js" type="module"></script>
+
+    <script>
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            new EzIconPicker({
+                selector: '.icon-picker',
+                iconPrefix: 'ti ti'
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,3 @@
+# Ignore everything in outline folder except the folder itself
+tool/outline/*
+!tool/outline/.gitkeep
