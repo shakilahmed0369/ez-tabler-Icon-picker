@@ -3,6 +3,7 @@ import fs from 'fs'
 
 export default defineConfig({
   build: {
+    emptyOutDir: false,
     lib: {
       entry: 'src/main.js',
       name: 'EzIconPicker',
