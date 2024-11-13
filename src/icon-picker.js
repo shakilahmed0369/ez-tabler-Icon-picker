@@ -2,14 +2,13 @@ import iconList from './icon-list.js';
 
 export default class EzIconPicker {
     // icon prefix
-    iconPrefix = null;
+    iconPrefix = 'ti ti';
 
-    constructor({ selector, iconPrefix}) {
+    constructor({selector}) {
         this.ICONS_PER_PAGE = 30;
         this.currentPage = 0;
         this.currentIcons = [...iconList];
         this.holder = document.querySelector(selector);
-        this.iconPrefix = iconPrefix;
         this.init();
     }
 
