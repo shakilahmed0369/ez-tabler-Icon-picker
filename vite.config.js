@@ -1,29 +1,19 @@
+import { resolve } from 'path'
 import { defineConfig } from 'vite'
-import fs from 'fs'
 
 export default defineConfig({
   build: {
-    emptyOutDir: false,
     lib: {
-      entry: 'src/main.js',
+      entry: resolve(__dirname, 'src/icon-picker.js'),
       name: 'EzIconPicker',
       fileName: 'ez-icon-picker',
       formats: ['iife']
     },
-    minify: 'terser',
-    outDir: 'dist',
     rollupOptions: {
       output: {
-        entryFileNames: `ez-icon-picker.min.js`,
-        name: 'EzIconPicker',
-        format: 'iife'
+        format: 'iife',
+        assetFileNames: 'ez-icon-picker.[ext]'
       }
     }
-  },
-  plugins: [{
-    name: 'copy-css',
-    closeBundle() {
-      fs.copyFileSync('src/icon-picker.css', 'dist/ez-icon-picker.css')
-    }
-  }]
-}) 
+  }
+})

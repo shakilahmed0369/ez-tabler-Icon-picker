@@ -1,14 +1,19 @@
 import iconList from './icon-list.js';
+import './icon-picker.css';
 
-export default class EzIconPicker {
+
+class EzIconPicker {
     // icon prefix
-    iconPrefix = 'fa-solid fa';
+    iconPrefix = 'ti ti';
 
-    constructor({selector}) {
+    constructor(config) {
         this.ICONS_PER_PAGE = 30;
         this.currentPage = 0;
         this.currentIcons = [...iconList];
-        this.holder = document.querySelector(selector);
+        this.holder = document.querySelector(config.selector);
+        if (!this.holder) {
+            throw new Error(`Element with selector "${config.selector}" not found`);
+        }
         this.init();
     }
 
@@ -22,7 +27,7 @@ export default class EzIconPicker {
     render() {
         this.holder.innerHTML = `
             <div class="ez_main" style="width: 100%; max-width: 300px;">
-                <input type="text" placeholder="Search icon" class="ez_search" name="${this.holder.dataset.name}">
+                <input type="text" placeholder="Search icon" class="ez_search" name="${this.holder.dataset.name || ''}">
                 <div class="ez_container"></div>
                 <div class="ez_footer" style="text-align: center; margin-top: 10px;">
                     <button class="ez_prev">Prev</button>
@@ -42,9 +47,9 @@ export default class EzIconPicker {
     }
 
     bindEvents() {
-        this.getElement('.ez_search').addEventListener('input', (e) => 
+        this.getElement('.ez_search').addEventListener('input', (e) =>
             this.searchIcon(e.target.value));
-        
+
         this.getElement('.ez_next').addEventListener('click', () => {
             this.currentPage++;
             this.createIcons();
@@ -61,7 +66,7 @@ export default class EzIconPicker {
         const startIndex = this.currentPage * this.ICONS_PER_PAGE;
         const endIndex = startIndex + this.ICONS_PER_PAGE;
         const pageIcons = this.currentIcons.slice(startIndex, endIndex);
-        
+
         if (pageIcons.length === 0) {
             container.innerHTML = `<div class="ez_no_results">
                 <div class="ez_no_results_icon">😩</div>
@@ -80,8 +85,7 @@ export default class EzIconPicker {
     createIconElement(icon) {
         return `<div class="ez_icon" data-icon="${this.iconPrefix}-${icon}">
                 <i class="${this.iconPrefix}-${icon}"></i>
-            </div>
-        `;
+            </div>`;
     }
 
     attachIconClickHandlers() {
@@ -89,7 +93,7 @@ export default class EzIconPicker {
             icon.addEventListener('click', () => {
                 this.getAllElements('.ez_icon')
                     .forEach(icon => icon.classList.remove('ez_active'));
-                
+
                 this.getElement('.ez_search').value = icon.dataset.icon;
                 icon.classList.add('ez_active');
             });
@@ -100,18 +104,18 @@ export default class EzIconPicker {
         const nextBtn = this.getElement('.ez_next');
         const prevBtn = this.getElement('.ez_prev');
         const totalPages = Math.ceil(this.currentIcons.length / this.ICONS_PER_PAGE);
-        
+
         nextBtn.disabled = this.currentPage >= totalPages - 1;
         prevBtn.disabled = this.currentPage <= 0;
-        
-        this.getElement('.ez_page-info').textContent = 
+
+        this.getElement('.ez_page-info').textContent =
             `Page ${this.currentPage + 1} of ${totalPages} (${this.currentIcons.length} icons)`;
     }
 
     searchIcon(search) {
         const searchTerm = search.toLowerCase().trim();
         this.currentPage = 0;
-        
+
         if (!searchTerm) {
             this.currentIcons = [...iconList];
             this.createIcons();
@@ -121,7 +125,7 @@ export default class EzIconPicker {
         const searchTerms = searchTerm.split(/\s+/);
         this.currentIcons = iconList.filter(icon => {
             const iconWords = icon.replace(/-/g, ' ');
-            return searchTerms.every(term => 
+            return searchTerms.every(term =>
                 iconWords.includes(term) || icon.includes(term)
             );
         });
@@ -129,7 +133,6 @@ export default class EzIconPicker {
         this.createIcons();
     }
 
-    // Helper methods
     getElement(selector) {
         return this.holder.querySelector(selector);
     }
@@ -139,7 +142,6 @@ export default class EzIconPicker {
     }
 }
 
-
-
-
-
+// Make both the class and icon list globally available
+window.EzIconPicker = EzIconPicker;
+window.iconList = iconList;

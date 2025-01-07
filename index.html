@@ -4,28 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- Fontawesome JavaScript -->
-<script src="https://kit.fontawesome.com/38f33a5e76.js" crossorigin="anonymous"></script>
-    <!-- Icon picker -->
-    <link rel="stylesheet" href="/dist/ez-icon-picker.css">
-    <title>Tabler Icon Picker</title>
+    <!-- Tabler Icons CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.27.1/tabler-icons.min.css"
+        integrity="sha512-24pha7f9ovk2qSOeb9WkMiBXIlBFChRtCcsj1xt3fBGXySJtBVlBqYg46xK+oKgt0okLlZWcXulHvqIN45oTkg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- EZ Icon Picker CSS -->
+    <link rel="stylesheet" href="./dist/ez-icon-picker.css">
+    <title>Icon Picker</title>
 </head>
 
 <body>
     <!-- Icon picker -->
     <div class="icon-picker" data-name="icon"></div>
-    
-    <script src="/dist/ez-icon-picker.min.js" type="module"></script>
 
+    <script src="./dist/bundle.iife.js"></script>
     <script>
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             new EzIconPicker({
-                selector: '.icon-picker',
+                selector: '.icon-picker'
             });
+
         });
     </script>
-
 </body>
 
 </html>
