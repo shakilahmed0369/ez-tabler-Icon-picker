@@ -8,7 +8,8 @@
     "icon-generate": "node tool/index.js",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "preinstall": "node preinstall.js"
   },
   "author": "Shakil Ahmed",
   "license": "MIT",

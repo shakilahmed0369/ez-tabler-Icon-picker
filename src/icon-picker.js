@@ -3,8 +3,6 @@ import './icon-picker.css';
 
 
 class EzIconPicker {
-    // icon prefix
-    iconPrefix = 'ti ti';
 
     constructor(config) {
         this.ICONS_PER_PAGE = 30;
@@ -83,8 +81,8 @@ class EzIconPicker {
     }
 
     createIconElement(icon) {
-        return `<div class="ez_icon" data-icon="${this.iconPrefix}-${icon}">
-                <i class="${this.iconPrefix}-${icon}"></i>
+        return `<div class="ez_icon" data-icon="${icon}">
+                <i class="${icon}"></i>
             </div>`;
     }
 
