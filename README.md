@@ -1,8 +1,7 @@
 # EZ Tabler Icon Picker
 
 A flexible, easy-to-use icon picker for Tabler Icons.
-
-![Description of image](./images/banner.png)
+![banner](https://github.com/user-attachments/assets/883a042f-43f7-45ec-92ae-312aac6b4107)
 
 ## Installation
 
